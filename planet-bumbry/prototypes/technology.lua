@@ -1,9 +1,11 @@
+local util = require("util")
+
 data:extend({
     {
         type = "technology",
         name = "planet-discovery-bumbry",
-        icon = "__planet-bumbry__/graphics/technology/planet-discovery-bumbry.png", -- Placeholder path
-        icon_size = 256,
+        icons = util.technology_icon_constant_planet("__planet-bumbry__/graphics/technology/planet-discovery-bumbry.png"),
+        icon_size = 512, -- Using 512 because the source image is 512 (assumed from starmap usage)
         essential = true,
         effects = {
             {
