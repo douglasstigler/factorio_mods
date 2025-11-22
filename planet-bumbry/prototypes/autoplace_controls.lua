@@ -4,6 +4,12 @@ data:extend({
         category = "terrain",
         name = "bumbrium-lake",
         richness = true,
-        order = "b-a"
+        order = "b-b"
+    },
+    {
+        type = "autoplace-control",
+        name = "bumble-tree",
+        richness = true,
+        order = "b-e"
     }
 })

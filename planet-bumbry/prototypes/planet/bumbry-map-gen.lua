@@ -5,7 +5,8 @@ planet_map_gen.bumbry = function()
         terrain_segmentation = "normal",
         water = "high",
         autoplace_controls = {
-            ["bumbrium-lake"] = { frequency = "normal", size = "normal", richness = "normal" }
+            ["bumbrium-lake"] = { frequency = "normal", size = "normal", richness = "normal" },
+            ["bumble-tree"] = { frequency = "normal", size = "normal", richness = "normal" }
         },
         autoplace_settings = {
             ["tile"] = {
@@ -17,6 +18,7 @@ planet_map_gen.bumbry = function()
             ["entity"] = {
                 settings = {
                     ["tree-01"] = { frequency = "normal", size = "normal", richness = "normal" },
+                    ["bumble-tree"] = { frequency = "normal", size = "normal", richness = "normal" },
                     ["stone-rock"] = { frequency = "normal", size = "normal", richness = "normal" }
                 }
             }
