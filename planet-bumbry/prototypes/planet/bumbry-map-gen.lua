@@ -21,6 +21,7 @@ planet_map_gen.bumbry = function()
                     ["tree-01"] = { frequency = "normal", size = "normal", richness = "normal" },
                     ["bumble-tree"] = { frequency = "normal", size = "normal", richness = "normal" },
                     ["bumbry-ore"] = { frequency = "normal", size = "normal", richness = "normal" },
+                    ["huge-bumbry-rock"] = {},
                     ["stone-rock"] = { frequency = "normal", size = "normal", richness = "normal" }
                 }
             }
