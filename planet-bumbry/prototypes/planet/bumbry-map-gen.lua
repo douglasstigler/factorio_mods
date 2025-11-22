@@ -6,6 +6,7 @@ planet_map_gen.bumbry = function()
         water = "high",
         autoplace_controls = {
             ["bumbrium-lake"] = { frequency = "normal", size = "normal", richness = "normal" },
+            ["bumbry-ore"] = { frequency = "normal", size = "normal", richness = "normal" },
             ["bumble-tree"] = { frequency = "normal", size = "normal", richness = "normal" }
         },
         autoplace_settings = {
@@ -19,6 +20,7 @@ planet_map_gen.bumbry = function()
                 settings = {
                     ["tree-01"] = { frequency = "normal", size = "normal", richness = "normal" },
                     ["bumble-tree"] = { frequency = "normal", size = "normal", richness = "normal" },
+                    ["bumbry-ore"] = { frequency = "normal", size = "normal", richness = "normal" },
                     ["stone-rock"] = { frequency = "normal", size = "normal", richness = "normal" }
                 }
             }

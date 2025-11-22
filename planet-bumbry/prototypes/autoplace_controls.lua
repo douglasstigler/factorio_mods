@@ -8,6 +8,13 @@ data:extend({
     },
     {
         type = "autoplace-control",
+        category = "resource",
+        name = "bumbry-ore",
+        richness = true,
+        order = "b-c"
+    },
+    {
+        type = "autoplace-control",
         name = "bumble-tree",
         richness = true,
         order = "b-e"

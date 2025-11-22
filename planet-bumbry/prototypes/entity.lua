@@ -1,3 +1,29 @@
+local resource = table.deepcopy(data.raw["resource"]["iron-ore"])
+resource.name = "bumbry-ore"
+resource.minable.result = "bumbry-ore"
+resource.stages = {
+    sheet = {
+        filename = "__planet-bumbry__/graphics/entity/bumbry-ore.png",
+        priority = "extra-high",
+        width = 64,
+        height = 64,
+        frame_count = 8,
+        variation_count = 8,
+        hr_version = {
+            filename = "__planet-bumbry__/graphics/entity/bumbry-ore.png",
+            priority = "extra-high",
+            width = 64,
+            height = 64,
+            frame_count = 8,
+            variation_count = 8,
+            scale = 1
+        }
+    }
+}
+resource.map_color = { r = 0.2, g = 0.2, b = 0.9 }
+
+data:extend({ resource })
+
 local entity = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"])
 entity.name = "bumbry-patch"
 entity.minable.result = "bumbry-patch"
