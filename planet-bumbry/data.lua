@@ -1,4 +1,6 @@
 -- Data stage entry point
-require("fluid")
-require("prototypes.autoplace_controls")
-require("planet")
+require("__planet-bumbry__.prototypes.fluid")
+require("__planet-bumbry__.prototypes.item")
+require("__planet-bumbry__.prototypes.recipe")
+require("__planet-bumbry__.prototypes.autoplace_controls")
+require("__planet-bumbry__.prototypes.planet.planet")
