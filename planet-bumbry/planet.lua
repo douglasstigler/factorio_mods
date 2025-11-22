@@ -8,7 +8,7 @@ local planet = {
     orientation = 0.25,
     magnitude = 1.0,
     surface_properties = {
-        ["day-night-cycle"] = 60 * 60 * 20, -- 20 minutes
+        ["day-night-cycle"] = 60 * 60 * 5, -- 5 minutes
         ["pressure"] = 2000,
         ["gravity"] = 20,
     },
@@ -23,6 +23,12 @@ local planet = {
                 settings = {
                     ["grass-1"] = { frequency = "normal", size = "normal", richness = "normal" },
                     ["bumbrium-lake"] = { frequency = "normal", size = "normal", richness = "normal" }
+                }
+            },
+            ["entity"] = {
+                settings = {
+                    ["tree-01"] = { frequency = "normal", size = "normal", richness = "normal" },
+                    ["stone-rock"] = { frequency = "normal", size = "normal", richness = "normal" }
                 }
             }
         }
