@@ -1,0 +1,12 @@
+{
+    "name": "planet-bumbry",
+    "version": "0.1.0",
+    "title": "Planet Bumbry",
+    "author": "Doug Stigler and Antigravity",
+    "factorio_version": "2.0",
+    "dependencies": [
+        "base >= 2.0",
+        "space-age"
+    ],
+    "description": "Adds Planet Bumbry: A blue world with alien forests and Bumbrium lakes."
+}
