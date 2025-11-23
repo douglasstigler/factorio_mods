@@ -9,13 +9,14 @@ local planet = {
     starmap_icon_size = 512,
     icon_size = 512,
     gravity_pull = 10,
-    distance = 15,
+    distance = 12,
     orientation = 0.25,
     magnitude = 1.0,
     surface_properties = {
         ["day-night-cycle"] = 60 * 60 * 5, -- 5 minutes
         ["pressure"] = 2000,
         ["gravity"] = 20,
+        ["solar-power"] = 120,
     },
     map_gen_settings = planet_map_gen.bumbry(),
     asteroid_spawn_influence = 1,

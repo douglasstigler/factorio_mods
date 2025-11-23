@@ -3,6 +3,7 @@ data:extend({
         type = "recipe",
         name = "bumbry-plate",
         category = "smelting",
+        enabled = false,
         energy_required = 3.2,
         ingredients = {
             { type = "item", name = "bumbry-ore", amount = 1 }

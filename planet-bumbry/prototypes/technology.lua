@@ -1,6 +1,6 @@
 local util = require("util")
 
-local technology = {
+local planet_discovery = {
     type = "technology",
     name = "planet-discovery-bumbry",
     icons = util.technology_icon_constant_planet("__planet-bumbry__/graphics/technology/planet-discovery-bumbry.png"),
@@ -29,4 +29,25 @@ local technology = {
     order = "ea[bumbry]"
 }
 
-data:extend({ technology })
+local bumbry_processing = {
+    type = "technology",
+    name = "bumbry-plate-processing",
+    icon = "__planet-bumbry__/graphics/icons/bumbry-ore.png",
+    icon_size = 64,
+    effects = {
+        {
+            type = "unlock-recipe",
+            recipe = "bumbry-plate"
+        }
+    },
+    prerequisites = {
+        "planet-discovery-bumbry"
+    },
+    research_trigger = {
+        type = "mine-entity",
+        entity = "bumbry-ore"
+    },
+    order = "ea[bumbry]-a[processing]"
+}
+
+data:extend({ planet_discovery, bumbry_processing })
