@@ -29,8 +29,4 @@ local technology = {
     order = "ea[bumbry]"
 }
 
-if settings.startup["require-gleba-before-planet-bumbry"].value then
-    table.insert(technology.unit.ingredients, { "agricultural-science-pack", 1 })
-end
-
 data:extend({ technology })

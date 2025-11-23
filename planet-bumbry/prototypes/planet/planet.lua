@@ -1,4 +1,5 @@
 local planet_map_gen = require("__planet-bumbry__.prototypes.planet.bumbry-map-gen")
+local asteroid_util = require("__space-age__.prototypes.planet.asteroid-spawn-definitions")
 
 local planet = {
     type = "planet",
@@ -17,13 +18,8 @@ local planet = {
         ["gravity"] = 20,
     },
     map_gen_settings = planet_map_gen.bumbry(),
-    asteroid_spawn_definitions = {
-        {
-            type = "asteroid-chunk",
-            probability = 1,
-            speed = 1
-        }
-    }
+    asteroid_spawn_influence = 1,
+    asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus, 0.9)
 }
 
 local connection = {
@@ -31,14 +27,8 @@ local connection = {
     name = "nauvis-bumbry",
     from = "nauvis",
     to = "bumbry",
-    length = 15000,
-    asteroid_spawn_definitions = {
-        {
-            type = "asteroid-chunk",
-            probability = 1,
-            speed = 1
-        }
-    }
+    length = 10000,
+    asteroid_spawn_definitions = asteroid_util.spawn_definitions(asteroid_util.nauvis_vulcanus)
 }
 
 data:extend({ planet, connection })

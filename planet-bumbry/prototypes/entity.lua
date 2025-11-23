@@ -27,6 +27,7 @@ data:extend({ resource })
 local entity = table.deepcopy(data.raw["assembling-machine"]["assembling-machine-3"])
 entity.name = "bumbry-patch"
 entity.minable.result = "bumbry-patch"
+entity.module_specification = entity.module_specification or {}
 entity.module_specification.module_slots = 6
 entity.crafting_speed = 2
 entity.collision_box = { { -2.4, -2.4 }, { 2.4, 2.4 } }
@@ -47,6 +48,7 @@ smasher.name = "bumble-smasher"
 smasher.minable.result = "bumble-smasher"
 smasher.crafting_categories = { "bumble-smashing" }
 smasher.crafting_speed = 1.25
+smasher.module_specification = smasher.module_specification or {}
 smasher.module_specification.module_slots = 4
 -- Ensure fluid boxes are present (Assembler 3 has them by default)
 data:extend({ smasher })

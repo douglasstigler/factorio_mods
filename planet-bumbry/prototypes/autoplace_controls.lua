@@ -15,6 +15,7 @@ data:extend({
     },
     {
         type = "autoplace-control",
+        category = "terrain",
         name = "bumble-tree",
         richness = true,
         order = "b-e"

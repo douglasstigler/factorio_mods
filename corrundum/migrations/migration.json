@@ -1,0 +1,31 @@
+{
+    "technology":
+    [
+      ["blue-rocket-production","blue-rocket"],
+      ["dry-ice-production","dry-ice"],
+      ["ice-box-production","ice-box"],
+      ["pressure-laboratory","pressure-lab"]
+    ],
+    "recipe":
+    [
+      ["platinum-thruster-production", "platinum-thruster"],
+      ["platinum-plate-production", "platinum-plate"],
+      ["sulfonated-plastic-production", "sulfonated-plastic"],
+      ["calcium-sulfate-production", "calcium-sulfate"],
+      ["catalytic-chemical-plant-recipe","catalytic-chemical-plant"],
+      ["dry-ice-production","dry-ice"],
+      ["dry-ice-production-alt","dry-ice-alt"],
+      ["ice-box-production","ice-box"],
+      ["asphalt-production","asphalt-c"],
+      ["asphalt-production-alt","asphalt-c-alt"],
+      ["red-steam-engine-recipe","red-steam-engine"],
+      ["red-boiler-recipe","red-boiler"],
+      ["pressure-laboratory","pressure-lab"]
+    ],
+    "item":
+    [
+      ["asphalt","asphalt-c"]
+    ]
+
+    
+}

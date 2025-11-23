@@ -1,0 +1,301 @@
+if mods["PlanetsLib"] then
+  if (data.raw["planet"]["nauvis"] and data.raw["planet"]["nauvis"].surface_properties and data.raw["planet"]["nauvis"].surface_properties.temperature) then
+    data.raw["planet"]["moshine"].surface_properties.temperature = 371
+  end
+end
+
+function prevent_from_moshine(entity)
+  if not entity.surface_conditions then
+    entity.surface_conditions = {}
+  end
+  table.insert(entity.surface_conditions, { property = "temperature-celcius", min = -273, max = 96 })
+end
+
+for _, entity in pairs(data.raw["accumulator"]) do
+  if not (entity.name == "ring-teleporter") then
+    prevent_from_moshine(entity)
+  end
+end
+
+--if data.raw["reactor"]["nuclear-reactor"] then
+--  prevent_from_moshine(data.raw["reactor"]["nuclear-reactor"])
+--end
+
+--if data.raw["fusion-reactor"]["fusion-reactor"] then
+--  prevent_from_moshine(data.raw["fusion-reactor"]["fusion-reactor"])
+--end
+if data.raw["item"]["foundation"] then
+  if data.raw["item"]["foundation"].place_as_tile then
+    if data.raw["item"]["foundation"].place_as_tile.tile_condition then
+      table.insert(data.raw["item"]["foundation"].place_as_tile.tile_condition, "moshine-lava")
+    end
+  end
+end
+
+
+local recycling = require("__quality__.prototypes.recycling")
+
+if mods["se-space-trains"] then
+  if settings.startup["moshine-se-space-trains"].value then
+    if data.raw["technology"]["tech-space-trains"] then
+      table.insert(data.raw["technology"]["tech-space-trains"].prerequisites, "moshine-tech-magnet")
+    end
+    if data.raw["recipe"]["space-locomotive"] then
+      table.insert(data.raw["recipe"]["space-locomotive"].ingredients, {type = "item", name = "magnet", amount = 5})
+    end
+    if data.raw["recipe"]["space-fluid-wagon"] then
+      table.insert(data.raw["recipe"]["space-fluid-wagon"].ingredients, {type = "item", name = "magnet", amount = 5})
+    end
+    if data.raw["recipe"]["space-cargo-wagon"] then
+      table.insert(data.raw["recipe"]["space-cargo-wagon"].ingredients, {type = "item", name = "magnet", amount = 5})
+    end
+    if data.raw["item-with-entity-data"]["space-locomotive"] then
+      data.raw["item-with-entity-data"]["space-locomotive"].order = "c[rolling-stock]-e[space-locomotive]"
+    end
+    if data.raw["item-with-entity-data"]["space-cargo-wagon"] then
+      data.raw["item-with-entity-data"]["space-cargo-wagon"].order = "c[rolling-stock]-f[space-cargo-wagon]"
+    end
+    if data.raw["item-with-entity-data"]["space-fluid-wagon"] then
+      data.raw["item-with-entity-data"]["space-fluid-wagon"].order = "c[rolling-stock]-g[space-fluid-wagon]"
+    end
+
+    recycling.generate_recycling_recipe(data.raw["recipe"]["space-locomotive"])
+    recycling.generate_recycling_recipe(data.raw["recipe"]["space-cargo-wagon"])
+    recycling.generate_recycling_recipe(data.raw["recipe"]["space-fluid-wagon"])
+    recycling.generate_recycling_recipe(data.raw["recipe"]["space-train-battery-charging-station"])
+    recycling.generate_recycling_recipe(data.raw["recipe"]["space-train-battery-pack"])
+  else
+    if data.raw.technology["tech-space-trains"] then
+      data.raw.technology["tech-space-trains"].enabled = false
+      data.raw.technology["tech-space-trains"].hidden = true
+    end
+
+    if data.raw["locomotive"]["space-locomotive"] then data.raw["locomotive"]["space-locomotive"].hidden = true end
+    if data.raw["cargo-wagon"]["space-cargo-wagon"] then data.raw["cargo-wagon"]["space-cargo-wagon"].hidden = true end
+    if data.raw["fluid-wagon"]["space-fluid-wagon"] then data.raw["fluid-wagon"]["space-fluid-wagon"].hidden = true end
+    if data.raw["assembling-machine"]["space-train-battery-charging-station"] then data.raw["assembling-machine"]["space-train-battery-charging-station"].hidden = true end
+
+    if data.raw.recipe["space-locomotive"] then data.raw.recipe["space-locomotive"].hidden = true end
+    if data.raw.recipe["space-cargo-wagon"] then data.raw.recipe["space-cargo-wagon"].hidden = true end
+    if data.raw.recipe["space-fluid-wagon"] then data.raw.recipe["space-fluid-wagon"].hidden = true end
+    if data.raw.recipe["space-train-battery-charging-station"] then data.raw.recipe["space-train-battery-charging-station"].hidden = true end
+    if data.raw.recipe["space-train-battery-pack"] then data.raw.recipe["space-train-battery-pack"].hidden = true end
+    if data.raw.recipe["space-train-battery-pack-refurbish"] then data.raw.recipe["space-train-battery-pack-refurbish"].hidden = true end
+    if data.raw.recipe["space-train-battery-pack-recharge"] then data.raw.recipe["space-train-battery-pack-recharge"].hidden = true end
+    
+    if data.raw["item"]["space-train-battery-charging-station"] then data.raw["item"]["space-train-battery-charging-station"].hidden = true end
+    if data.raw["item"]["space-train-battery-pack"] then data.raw["item"]["space-train-battery-pack"].hidden = true end
+    if data.raw["item"]["space-train-destroyed-battery-pack"] then data.raw["item"]["space-train-destroyed-battery-pack"].hidden = true end
+    if data.raw["item"]["space-train-discharged-battery-pack"] then data.raw["item"]["space-train-discharged-battery-pack"].hidden = true end
+    if data.raw["item-with-entity-data"]["space-locomotive"] then data.raw["item-with-entity-data"]["space-locomotive"].hidden = true end
+    if data.raw["item-with-entity-data"]["space-cargo-wagon"] then data.raw["item-with-entity-data"]["space-cargo-wagon"].hidden = true end
+    if data.raw["item-with-entity-data"]["space-fluid-wagon"] then data.raw["item-with-entity-data"]["space-fluid-wagon"].hidden = true end
+  end
+end
+
+if mods["maraxsis"] then
+  if data.raw.item["maraxsis-glass-panes"] then
+    data.raw.item["maraxsis-glass-panes"].localised_name = {"item-name.maraxsis-reinforced-glass"}
+  end
+end
+
+if mods["bzsilicon"] then
+
+  local util = require("__bzsilicon__.data-util")
+  
+  if data.raw["recipe"]["optical-cable"] and data.raw["item"]["optical-fiber"] then
+    data.raw["recipe"]["optical-cable"].ingredients = {
+      {type = "item", name = "optical-fiber", amount = 1},
+      {type = "item", name = "silicon-carbide", amount = 1},
+      {type = "item", name = "glass", amount = 1},
+    }
+  end
+
+  data.extend({
+    {
+      type = "recipe",
+      name = "advanced-silicon",
+      category = "smelting",
+      energy_required = 5,
+      ingredients = {
+        {type = "item", name = "silica", amount = 5}
+      },
+      results = {{type = "item", name = "hot-silicon", amount = 1}},
+      allow_productivity = true,
+      enabled = false,
+    },
+    {
+      type = "technology",
+      name = "moshine-tech-silicon",
+      icon = "__Moshine__/graphics/technology/moshine-tech-silicon.png",
+      icon_size = 256,
+      effects =
+      {
+        {
+          type = "unlock-recipe",
+          recipe = "advanced-silicon"
+        },
+      },
+      prerequisites = {"planet-discovery-moshine"},
+      unit =
+      {
+        count = 50,
+        ingredients =
+        {
+          {"automation-science-pack", 1},
+          {"logistic-science-pack", 1},
+          {"chemical-science-pack", 1},
+          {"utility-science-pack", 1},
+        },
+        time = 60
+      }
+    },
+    {
+      type = "recipe",
+      name = "optical-fiber",
+      enabled = false,
+      allow_productivity = true,
+      ingredients = {util.item("silica", 1)},
+      results = {util.item("optical-fiber",  1)},
+      -- expensive =
+      -- {
+      --   enabled = false,
+      --   ingredients = {{"silica", 2}},
+      --   results = {util.item("optical-fiber",  1)},
+      -- },
+    },
+    {
+      type = "item",
+      name = "optical-fiber",
+      icon = "__bzsilicon__/graphics/icons/optical-fiber.png",
+      icon_size = 64, icon_mipmaps = 3,
+      subgroup = util.cablesg,
+      order = "a[optical-fiber]",
+      stack_size = util.get_stack_size(200),
+      weight = 1*kg,
+    },
+    {
+      type = "technology",
+      name = "moshine-tech-data-extractor",
+      icon = "__Moshine__/graphics/technology/moshine-tech-data-extractor.png",
+      icon_size = 256,
+      effects =
+      {
+        {
+          type = "unlock-recipe",
+          recipe = "data-extractor"
+        },
+        {
+          type = "unlock-recipe",
+          recipe = "optical-cable"
+        },
+      },
+      prerequisites = {"moshine-tech-neural_computer"},
+      unit =
+      {
+        count = 10,
+        ingredients =
+        {
+          {"datacell-empty", 1},
+        },
+        time = 60
+      }
+    },
+  })
+
+  if mods["hot-metals"] then 
+    data:extend({
+      {
+        type = "recipe",
+        name = "advanced-silicon",
+        category = "smelting",
+        icon = "__Moshine__/graphics/technology/moshine-tech-silicon.png",
+        icon_size = 256,
+        energy_required = 5,
+        ingredients = {
+          {type = "item", name = "silica", amount = 5}
+        },
+        results = {{type = "item", name = "hot-silicon", amount = 1}},
+        allow_productivity = true,
+        enabled = false,
+      },
+      {
+        type = "recipe",
+        name = "silicon",
+        category = "smelting",
+        icon = "__Moshine__/graphics/technology/moshine-tech-silicon.png",
+        icon_size = 256,
+        energy_required = 5,
+        ingredients = {
+          {type = "item", name = "silica", amount = 10}
+        },
+        results = {{type = "item", name = "hot-silicon", amount = 1}},
+        allow_productivity = true,
+        enabled = false,
+      },
+    })
+  else
+    data:extend({
+      {
+        type = "recipe",
+        name = "advanced-silicon",
+        category = "chemistry",
+        energy_required = 5,
+        ingredients = {
+          {type = "item", name = "silica", amount = 10},
+          {type = "item", name = "coal", amount = 1}
+        },
+        results = {{type = "item", name = "silicon", amount = 1}},
+        allow_productivity = true,
+        enabled = false,
+      },
+      {
+        type = "recipe",
+        name = "silicon",
+        category = "chemistry",
+        icon = "__Moshine__/graphics/technology/moshine-tech-silicon.png",
+        icon_size = 256,
+        energy_required = 5,
+        ingredients = {
+          {type = "item", name = "silica", amount = 10},
+          {type = "item", name = "coal", amount = 1}
+        },
+        results = {{type = "item", name = "silicon", amount = 1}},
+        allow_productivity = true,
+        enabled = false,
+      },
+    })
+  end
+end
+
+if data.raw["agricultural-tower"]["agricultural-tower"] and not data.raw["agricultural-tower"]["agricultural-tower"].accepted_seeds then
+  data.raw["agricultural-tower"]["agricultural-tower"].accepted_seeds = {}
+  for _, seed in pairs(data.raw.item) do
+    if seed.plant_result then
+      if seed.name ~= "datacell-equation" and seed.name ~= "datacell-dna-raw" then
+        table.insert(data.raw["agricultural-tower"]["agricultural-tower"].accepted_seeds, seed.name)
+      end
+    end
+  end
+  for _, seed in pairs(data.raw.tool) do
+    if seed.plant_result then
+      if seed.name ~= "datacell-equation" and seed.name ~= "datacell-dna-raw" then
+        table.insert(data.raw["agricultural-tower"]["agricultural-tower"].accepted_seeds, seed.name)
+      end
+    end
+  end
+  for _, seed in pairs(data.raw.module) do
+    if seed.plant_result then
+      if seed.name ~= "datacell-equation" and seed.name ~= "datacell-dna-raw" then
+        table.insert(data.raw["agricultural-tower"]["agricultural-tower"].accepted_seeds, seed.name)
+      end
+    end
+  end
+  for _, seed in pairs(data.raw.capsule) do
+    if seed.plant_result then
+      if seed.name ~= "datacell-equation" and seed.name ~= "datacell-dna-raw" then
+        table.insert(data.raw["agricultural-tower"]["agricultural-tower"].accepted_seeds, seed.name)
+      end
+    end
+  end
+end

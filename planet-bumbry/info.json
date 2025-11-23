@@ -8,5 +8,6 @@
         "base >= 2.0",
         "space-age"
     ],
+    "space_travel_required": true,
     "description": "Adds Planet Bumbry: A blue world with alien forests and Bumbrium lakes."
 }
